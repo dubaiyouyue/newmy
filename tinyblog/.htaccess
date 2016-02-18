@@ -1,4 +1,5 @@
 <IfModule mod_rewrite.c>
+11
 RewriteEngine On
 RewriteBase /tinyblog
 RewriteCond %{REQUEST_FILENAME} -f [OR]
