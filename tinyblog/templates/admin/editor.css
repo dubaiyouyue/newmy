@@ -1,0 +1,107 @@
+.editor {
+    margin: 0;
+    padding: 0 0 0 0px;
+}
+.editor_tool {
+    float: left;
+    margin: 0;
+    padding: 5px 0px 5px 5px;
+    width: 565px;
+    background: #F6F6F6;
+    border-left: 1px solid #dfdfdf;
+	border-right: 1px solid #dfdfdf;
+	border-top: 1px solid #dfdfdf;
+    overflow: hidden;
+}
+.editor_tool a {
+    float: left;
+    margin: 0 1px 1px 0;
+    padding: 0;
+    height: 18px;
+    width: 18px;
+    border: 1px solid #F6F6F6;
+    text-indent: -10000px;
+    outline:none;
+    hide-focus:expression(this.hideFocus=true);
+    overflow: hidden;
+}
+.editor_tool a:hover {
+    float: left;
+    margin: 0 1px 1px 0;
+    padding: 0;
+    height: 18px;
+    width: 18px;
+    border: 1px solid gray;
+    text-indent: -10000px;
+    overflow: hidden;
+}
+.editor_text {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 570px;
+    border: 1px solid #dfdfdf;
+    overflow: hidden;
+}
+.editor_text textarea {
+    float: left;
+    margin: 0;
+    padding: 5px 5px;
+    height: 192px;
+    width: 559px;
+    background: #fff;
+    font: normal 12px/20px Verdana;
+    border: 1px solid #F9F9F9;
+    outline: none;
+}
+.tool_b {
+    background: url(tool.png) no-repeat 0 0;
+}
+.tool_i {
+    background: url(tool.png) no-repeat 0 -20px;
+}
+.tool_u {
+    background: url(tool.png) no-repeat 0 -40px;
+}
+.tool_link {
+    background: url(tool.png) no-repeat 0 -60px;
+}
+.tool_color {
+    background: url(tool.png) no-repeat 0 -80px;
+}
+.tool_red {
+    background: url(tool.png) no-repeat 0 -100px;
+}
+.tool_blue {
+    background: url(tool.png) no-repeat 0 -120px;
+}
+.tool_green {
+    background: url(tool.png) no-repeat 0 -140px;
+}
+.tool_left {
+    background: url(tool.png) no-repeat 0 -160px;
+}
+.tool_center {
+    background: url(tool.png) no-repeat 0 -180px;
+}
+.tool_right {
+    background: url(tool.png) no-repeat 0 -200px;
+}
+.tool_img {
+    background: url(tool.png) no-repeat 0 -220px;
+}
+.tool_quote {
+    background: url(tool.png) no-repeat 0 -240px;
+}
+.tool_font {
+    background: url(tool.png) no-repeat 0 -260px;
+}
+.tool_size {
+    background: url(tool.png) no-repeat 0 -280px;
+}
+.tool_tag {
+    background: url(tool.png) no-repeat 0 -300px;
+}
+.tool_flash {
+    background: url(tool.png) no-repeat 0 -320px;
+}

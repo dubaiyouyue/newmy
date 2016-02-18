@@ -1,0 +1,1 @@
+a:2:{i:0;s:9:"HelloWord";i:1;s:7:"KEditor";}

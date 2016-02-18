@@ -1,0 +1,3 @@
+<?php
+	$templatename = 'default';
+?>
