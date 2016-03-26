@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js鼠标滚动图片等比例缩放代码 - 站长素材</title>
+
+<style type="text/css">
+img{
+	position: absolute;
+	left:400px;
+	top: 100px;
+}
+</style>
+
+<script type="text/javascript" src="wheel.js"></script>
+<script type="text/javascript">
+window.onload=function (){
+	//var oImg=document.getElementsByTagName("img")[0];
+	var oImg=document.getElementById('imgjjjjs');
+	fnWheel(oImg,function (down,oEvent){
+
+		var oldWidth=this.offsetWidth;
+		var oldHeight=this.offsetHeight;
+		var oldLeft=this.offsetLeft;
+		var oldTop=this.offsetTop;
+
+		var scaleX=(oEvent.clientX-oldLeft)/oldWidth;//比例
+		var scaleY=(oEvent.clientY-oldTop)/oldHeight;
+
+		if (down){
+			this.style.width=this.offsetWidth*0.9+"px";
+			this.style.height=this.offsetHeight*0.9+"px";
+		}
+		else{
+			this.style.width=this.offsetWidth*1.1+"px";
+			this.style.height=this.offsetHeight*1.1+"px";
+		}
+
+		var newWidth=this.offsetWidth;
+		var newHeight=this.offsetHeight;
+
+		this.style.left=oldLeft-scaleX*(newWidth-oldWidth)+"px";
+		this.style.top=oldTop-scaleY*(newHeight-oldHeight)+"px";
+	});
+}	
+</script>
+</head>
+<body style="height:123213px;">
+
+<div><img src="img/mi.jpg" alt="" width="123" height="123" id="imgjjjjs"></div>
+<div style="text-align:center;margin:20px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. </p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
