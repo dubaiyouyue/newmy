@@ -31,11 +31,11 @@
             var clientWidth = _root.clientWidth,
                 fontSize = 20;
             if (!clientWidth) return;
-            if(clientWidth < 640) {
+            //if(clientWidth < 640) {
                 fontSize = 20 * (clientWidth / 320);
-            } else {
+            /*} else {
                 fontSize = 20 * (640 / 320);
-            }
+            }*/
             _root.style.fontSize = fontSize + 'px';
         };
     if (!doc.addEventListener) return;
