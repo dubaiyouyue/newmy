@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>演示：PHP+jQuery+Ajax九宫格抽奖转盘</title>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no" /> 
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+
+   <script>
+	
+//- 设置html标签font-size
+(function (doc, win) {
+    var _root = doc.documentElement,
+        resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        resizeCallback = function () {
+            var clientWidth = _root.clientWidth,
+                fontSize = 20;
+            if (!clientWidth) return;
+            if(clientWidth < 640) {
+                fontSize = 20 * (clientWidth / 320);
+            } else {
+                fontSize = 20 * (640 / 320);
+            }
+            _root.style.fontSize = fontSize + 'px';
+        };
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvent, resizeCallback, false);
+    doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+})(document, window);
+
+
+   </script>
+   
+   
+   
+   
+   
+        <style type="text/css">
+		*{padding:0px;margin:0px;}
+		
+	
+	/*大背景外边距*/
+	.cjnewbgmainwaipadding {
+		padding: 1rem;
+	}
+	/*大背景*/
+	.cjnewbgmain {
+		width: 100%;
+		height: 13rem;
+		background: url(images/bgcj.gif);
+		background-repeat: no-repeat;
+		background-size: 100%;
+		position: relative;
+	}
+	/*奖品图片*/
+/*-----------------------1---------------------*/
+.lottery-unit-0{
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffe442 url(images/1.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 0.61rem;
+    top: 0.8rem;
+    position: absolute;
+}
+/*-----------------------2---------------------*/
+.lottery-unit-1{
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffc342 url(images/7.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 4.9rem;
+    top: 0.8rem;
+    position: absolute;
+}
+/*-----------------------3---------------------*/
+.lottery-unit-2 {
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffe442 url(images/3.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 9.2rem;
+    top: 0.8rem;
+    position: absolute;
+}
+/*-----------------------4---------------------*/
+.lottery-unit-3 {
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffc342 url(images/7.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 9.2rem;
+    top: 4.4rem;
+    position: absolute;
+}
+/*-----------------------5---------------------*/
+.lottery-unit-4 {
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffe442 url(images/5.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 9.2rem;
+    top: 8.0rem;
+    position: absolute;
+}
+/*-----------------------6---------------------*/
+.lottery-unit-5 {
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffc342 url(images/6.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 4.9rem;
+    top: 8.0rem;
+    position: absolute;
+}	
+/*-----------------------7---------------------*/
+.lottery-unit-6 {
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffe442 url(images/7.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 0.61rem;
+    top: 8.0rem;
+    position: absolute;
+}	
+/*-----------------------8---------------------*/
+.lottery-unit-7 {
+    height: 3.4rem;
+    width: 4.1rem;
+	background: #ffc342 url(images/8.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    left: 0.61rem;
+    top: 4.4rem;
+    position: absolute;
+}	
+/*抽奖按钮*/
+.lottery-unit-an {
+    height: 3.4rem;
+    width: 4.1rem;
+    background: red url(images/ann.gif);
+	background-repeat: no-repeat;
+    background-position: center;
+	background-size: 100%;
+    border-radius: 12px;
+    left: 4.9rem;
+    top: 4.4rem;
+    position: absolute;
+}
+/*奖品说明文字*/
+.lottery-unit{
+    text-align: center;
+    line-height: 6.1rem;
+    font-size: 12px;
+}
+/*滚动背景*/
+.active{
+    background-color: #49d2ff;
+}
+        </style>
+    </head>
+    <body>
+	
+	
+	
+	
+	<div class="cjnewbgmainwaipadding"><div class="cjnewbgmain">
+        <div id="lottery" prize_site="1" prize_id="2" prize_name="十二等奖"><!--- ←←←←←←临时测试-->
+                <!-- 提交后台 返回数据前端重新生成 ↓↓↓↓↓↓↓↓
+					<div id="lottery">
+					-->
+					
+					
+					
+       
+			
+				<div class="lottery-unit lottery-unit-0">维尼熊蛋糕</div>
+				<div class="lottery-unit lottery-unit-1">红包券10元</div>
+				<div class="lottery-unit lottery-unit-2">迪士尼乐园双人游</div>
+				<div class="lottery-unit lottery-unit-3">红包券20元</div>
+				<div class="lottery-unit lottery-unit-4">米妮蛋糕</div>
+				<div class="lottery-unit lottery-unit-5">米奇蛋糕</div>
+				<div class="lottery-unit lottery-unit-6">红包券50元</div>
+				<div class="lottery-unit lottery-unit-7">谢谢惠顾</div>
+				<div class="lottery-unit-an"></div>
+			</div>
+	  
+
+           
+             
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			
+					 </div>
+                </div>
+        
+       
+       
+        
+        <script type="text/javascript">
+            var lottery = {
+                index: 0, //当前转动到哪个位置，起点位置
+                count: 0, //总共有多少个位置
+                timer: 0, //setTimeout的ID，用clearTimeout清除
+                speed: 20, //初始转动速度
+                times: 0, //转动次数
+                cycle: 50, //转动基本次数：即至少需要转动多少次再进入抽奖环节
+                prize: 0, //中奖位置
+                init: function(id) {
+                    if ($("#" + id).find(".lottery-unit").length > 0) {
+                        $lottery = $("#" + id);
+                        $units = $lottery.find(".lottery-unit");
+                        this.obj = $lottery;
+                        this.count = $units.length;
+                        $lottery.find(".lottery-unit-" + this.index).addClass("active");
+                    }
+                },
+                roll: function() {
+                    var index = this.index;
+                    var count = this.count;
+                    var lottery = this.obj;
+                    $(lottery).find(".lottery-unit-" + index).removeClass("active");
+                    index += 1;
+                    if (index > count - 1) {
+                        index = 0;
+                    }
+                    $(lottery).find(".lottery-unit-" + index).addClass("active");
+                    this.index = index;
+                    return false;
+                },
+                stop: function(index) {
+                    this.prize = index;
+                    return false;
+                }
+            };
+
+            function roll() {
+                lottery.times += 1;
+                lottery.roll();
+                var prize_site = $("#lottery").attr("prize_site");
+                if (lottery.times > lottery.cycle + 10 && lottery.index == prize_site) {
+                    var prize_id = $("#lottery").attr("prize_id");
+                    var prize_name = $("#lottery").attr("prize_name");
+                    alert("前端中奖位置："+prize_site+"\n"+"中奖名称："+prize_name+"\n中奖id："+prize_id)
+                    clearTimeout(lottery.timer);
+                    lottery.prize = -1;
+                    lottery.times = 0;
+                    click = false;
+
+                } else {
+                    if (lottery.times < lottery.cycle) {
+                        lottery.speed -= 10;
+                    } else if (lottery.times == lottery.cycle) {
+                        var index = Math.random() * (lottery.count) | 0;
+                        lottery.prize = index;
+                    } else {
+                        if (lottery.times > lottery.cycle + 10 && ((lottery.prize == 0 && lottery.index == 7) || lottery.prize == lottery.index + 1)) {
+                            lottery.speed += 110;
+                        } else {
+                            lottery.speed += 20;
+                        }
+                    }
+                    if (lottery.speed < 40) {
+                        lottery.speed = 40;
+                    }
+                    lottery.timer = setTimeout(roll, lottery.speed);
+                }
+                return false;
+            }
+
+            var click = false;
+
+            $(function() {
+                lottery.init('lottery');
+                $(".lottery-unit-an").click(function() {
+					//alert('fdsafdasf');
+                     if (click) {
+                        return false;
+                    } else {
+                        lottery.speed = 100;
+						
+						/*提交后台中奖算法
+                        $.post("ajax.php", {uid: 1}, function(data) { //获取奖品，也可以在这里判断是否登陆状态
+                            $("#lottery").attr("prize_site", data.prize_site);
+                            $("#lottery").attr("prize_id", data.prize_id);
+                            $("#lottery").attr("prize_name", data.prize_name);
+                            roll();
+                            click = true;
+                            return false;
+                        }, "json")
+						后台end*/
+						
+								//临时测试
+								roll();
+								click = true;
+								return false;
+								//end
+                    }
+                });
+            })
+        </script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    </body>
+</html>
