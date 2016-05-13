@@ -1,0 +1,104 @@
+<style>
+#buttonbody{
+	width:300px;height:300px;background:red;
+}
+.dropdown-menu{background:#fff;}
+.dropdown-menu li{
+	list-style:none;
+	content:"";
+display: block;  
+clear: both;  
+}.dropdown-menu a{
+text-decoration:none; 
+}.dropdown-menu a:hover{
+text-decoration:underline; 
+}
+/*利用:after伪元素*/  
+.clearUl:after {  
+content:"";
+display: block;  
+clear: both;  
+}  
+
+
+
+
+
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 100px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+
+
+
+</style>  
+
+<div id="buttonbody">
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="BootstrapMenu.min.js"></script>
+<script>
+	var menu = new BootstrapMenu('#buttonbody', {
+	  actions: [{
+		  name: '返回顶部 ↑',
+		  onClick: function() {
+			// run when the action is clicked
+		  }
+		}, {
+		  name: '常用代码 √',
+		  onClick: function() {
+			// run when the action is clicked
+			location.href = 'https://blog.iswtf.com/article.php?id=440';
+		  }
+		}, {
+		  name: '回到首页 〓',
+		  onClick: function() {
+			// run when the action is clicked
+			location.href = 'https://blog.iswtf.com/';
+		  }}, {
+		  name: '评论留言 ±',
+		  onClick: function() {
+			// run when the action is clicked
+			location.href = 'https://blog.iswtf.com/?module=comments';
+		  }
+	  }, {
+		  name: '网址导航 ￡',
+		  onClick: function() {
+			// run when the action is clicked
+			location.href = 'https://d.iswtf.com/';
+		  }
+	  }]
+	});
+</script>
+</div>
